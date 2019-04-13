@@ -6,8 +6,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
-import { ListItemSecondaryAction, IconButton } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle'
+import { ListItemSecondaryAction} from '@material-ui/core';
+import CustomizedDialogDemo from './CustomizedDialogDemo';
 
 const styles = theme => ({
   root: {
@@ -29,9 +29,7 @@ function FolderList(props) {
         </Avatar>
         <ListItemText primary="Ice imericano" secondary="HOT 2700 , ICE 3000" />
         <ListItemSecondaryAction>
-            <IconButton arial-label="Add">
-                <AddCircleIcon/>
-            </IconButton>
+            < CustomizedDialogDemo />   
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem button>
@@ -40,9 +38,7 @@ function FolderList(props) {
         </Avatar>
         <ListItemText primary="Espresso" secondary="HOT 2700 , ICE 3000" />
         <ListItemSecondaryAction>
-            <IconButton arial-label="Add">
-                <AddCircleIcon/>
-            </IconButton>
+             < CustomizedDialogDemo />
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem button>
@@ -51,9 +47,7 @@ function FolderList(props) {
         </Avatar>
         <ListItemText primary="Cold Brew" secondary="HOT 2700 , ICE 3000" />
         <ListItemSecondaryAction>
-            <IconButton arial-label="Add">
-                <AddCircleIcon/>
-            </IconButton>
+            < CustomizedDialogDemo />
         </ListItemSecondaryAction>
       </ListItem>
     </List>
