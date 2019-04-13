@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
+import FolderList from './FolderList'
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -60,11 +62,11 @@ class ScrollableTabsButtonAuto extends React.Component {
 
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
+        {value === 0 && <TabContainer><FolderList/></TabContainer>}
+        {value === 1 && <TabContainer><FolderList/></TabContainer>}
+        {value === 2 && <TabContainer><FolderList/></TabContainer>}
+        {value === 3 && <TabContainer><FolderList/></TabContainer>}
+        {value === 4 && <TabContainer><FolderList/></TabContainer>}
 
       </div>
     );

@@ -8,14 +8,14 @@ import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FaceIcon from '@material-ui/icons/Face';
-import { pink } from '@material-ui/core/colors';
+// import red  from '@material-ui/core/colors/red';
 
 import { Link } from 'react-router-dom';
 
 
 const styles = {
   root: {
-    // background: 'pink',
+    // background: red[300],
     width: 500,
   },
 };

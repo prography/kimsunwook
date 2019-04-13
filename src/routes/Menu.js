@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import {postMenu} from '../lib/api';
 
-import ScrollableTab from '../components/ScrollableTab'
+import ScrollableTabsButtonAuto from '../components/ScrollableTabsButtonAuto'
 
 class Menu extends Component {
     state = {
@@ -49,11 +49,11 @@ class Menu extends Component {
     render() {
         return (
             <div>
-                <ScrollableTab />
-                <ul>
+                <ScrollableTabsButtonAuto />
+                {/* <ul>
                     {this.state.menus.map(menu => <li key={menu.name}>{menu.name}</li>)}
                 </ul>
-                <button type="submit" onClick={this.menu2shoppingList}>담기</button>
+                <button type="submit" onClick={this.menu2shoppingList}>담기</button> */}
             </div>
         );
     }
