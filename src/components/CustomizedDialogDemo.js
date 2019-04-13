@@ -13,6 +13,7 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 
 import Grid from '@material-ui/core/Grid';
+import SimpleSnackbar from './SimpleSnackbar';
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -122,9 +123,10 @@ class CustomizedDialogDemo extends React.Component {
             <Button variant="contained" color="primary" onClick={this.handleClose} >
               바로결제 
             </Button>
-            <Button variant="contained" color="primary" onClick={this.handleClose} >
+            {/* <Button variant="contained" color="primary" onClick={this.handleClose} >
               장바구니  
-            </Button>
+            </Button> */}
+            <SimpleSnackbar/>
           </DialogActions>
         </Dialog>
       </div>
