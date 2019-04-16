@@ -59,6 +59,7 @@ const DialogActions = withStyles(theme => ({
 class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
+    count: 1
   };
 
   handleClickOpen = () => {
@@ -71,7 +72,20 @@ class CustomizedDialogDemo extends React.Component {
     this.setState({ open: false });
   };
 
+  handleMinusClick = () => {
+    this.setState({
+      count: --this.state.count,
+    });
+  };
+
+  handleAddClick = () => {
+    this.setState({
+      count: ++this.state.count,
+    });
+  };
+
   render() {
+    const {menu} = this.props;
     return (
       <div>
         <IconButton arial-label="Add" onClick={this.handleClickOpen}>
@@ -83,7 +97,7 @@ class CustomizedDialogDemo extends React.Component {
           open={this.state.open}
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            아이스 아메리카노
+            {menu.name}
           </DialogTitle>
           <DialogContent>
             <Typography gutterBottom>
@@ -102,20 +116,20 @@ class CustomizedDialogDemo extends React.Component {
             </Grid>
             </Typography>
             <Typography gutterBottom>
-            주문목록 HOT 2EA ICE 1EA
+            주문목록 {menu.name}:{this.state.count}개
             </Typography>
             <Typography gutterBottom>
-            총액 W9900
+            총액 W{menu.price*this.state.count}
             </Typography>
           </DialogContent>
           <DialogActions>
-          <IconButton arial-label="Minus">
+          <IconButton arial-label="Minus" onClick={this.handleMinusClick}>
             <RemoveCircleIcon/>
           </IconButton>
           <Typography gutterBottom>
-            3
+            {this.state.count}
             </Typography>
-          <IconButton arial-label="Add">
+          <IconButton arial-label="Add" onClick={this.handleAddClick}>
             <AddCircleIcon/>
           </IconButton>
           </DialogActions>

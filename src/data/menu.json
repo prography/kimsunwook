@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Ice    americano",
+        "price": "3000.00",
+        "image": null,
+        "category": "Coffee"
+    },
+    {
+        "name": "Hotamericano",
+        "price": "2700.00",
+        "image": null,
+        "category": "Coffee"
+    },
+    {
+        "name": "Icechocolatte",
+        "price": "3000.00",
+        "image": null,
+        "category": "Coffee"
+    },
+    {
+        "name": "Hotchocolatte",
+        "price": "2700.00",
+        "image": null,
+        "category": "Coffee"
+    },
+    {
+        "name": "Lemonade",
+        "price": "3500.00",
+        "image": null,
+        "category": "Ade"
+    }
+]

@@ -39,9 +39,13 @@ class ScrollableTabsButtonAuto extends React.Component {
     this.setState({ value });
   };
 
+
+
   render() {
-    const { classes } = this.props;
+    const { classes,menus,onCreate } = this.props;
     const { value } = this.state;
+
+ 
 
     return (
       <div className={classes.root}>
@@ -62,11 +66,12 @@ class ScrollableTabsButtonAuto extends React.Component {
 
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><FolderList/></TabContainer>}
-        {value === 1 && <TabContainer><FolderList/></TabContainer>}
-        {value === 2 && <TabContainer><FolderList/></TabContainer>}
-        {value === 3 && <TabContainer><FolderList/></TabContainer>}
-        {value === 4 && <TabContainer><FolderList/></TabContainer>}
+        {value === 0 && <TabContainer><FolderList onCreate={onCreate} category="Coffee" menus={menus.filter(menu=>menu.category === 'Coffee')}/></TabContainer>}
+        {value === 1 && <TabContainer><FolderList onCreate={onCreate} category="Latte" menus={menus.filter(menu=>menu.category === 'Latte')}/></TabContainer>}
+        {value === 2 && <TabContainer><FolderList onCreate={onCreate} category="Ice Blendid" menus={menus.filter(menu=>menu.category === 'Ice Blended')}/></TabContainer>}
+        {value === 3 && <TabContainer><FolderList onCreate={onCreate} category="Ade" menus={menus.filter(menu=>menu.category === 'Ade')}/></TabContainer>}
+        {value === 4 && <TabContainer><FolderList onCreate={onCreate} category="Bubble Tea" menus={menus.filter(menu=>menu.category === 'Bubble Tea')} /></TabContainer>}
+
 
       </div>
     );

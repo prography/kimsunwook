@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   close: {
@@ -16,9 +14,21 @@ class SimpleSnackbar extends React.Component {
   state = {
     open: false,
   };
+  
+//   menu2shoppingList = () => {
+//     // props 전달받기 
+//     const {onCreate} = this.props;
+//     // 상태관리를 위한 부모 컴포넌트의 전송
+//     const { order } = this.state;
+//     onCreate(this.state.order);
+
+//     //서버에 데이터 전송 
+//     postMenu(order)
+//     }
 
   handleClick = () => {
     this.setState({ open: true });
+    // m
   };
 
   handleClose = (event, reason) => {
@@ -27,10 +37,10 @@ class SimpleSnackbar extends React.Component {
     }
 
     this.setState({ open: false });
+
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <Button  variant="contained" color="primary" onClick={this.handleClick}>장바구니</Button>

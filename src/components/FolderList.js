@@ -12,45 +12,30 @@ import CustomizedDialogDemo from './CustomizedDialogDemo';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 500,
     backgroundColor: theme.palette.background.paper,
   },
 });
 
 function FolderList(props) {
-  const { classes } = props;
+  const { menus,classes } = props;
   return (
     <div className={classes.root}>
-    <List component="nav">
-    {/* map으로 렌더할 부분, state를 ListItemText와 addCircleIcon으로 연결될 Dialog에 전달해야함. */}
-      <ListItem button>
-        <Avatar>
-          <LocalDrinkIcon />
-        </Avatar>
-        <ListItemText primary="Ice imericano" secondary="HOT 2700 , ICE 3000" />
-        <ListItemSecondaryAction>
-            < CustomizedDialogDemo />   
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem button>
-        <Avatar>
-        <LocalDrinkIcon />
-        </Avatar>
-        <ListItemText primary="Espresso" secondary="HOT 2700 , ICE 3000" />
-        <ListItemSecondaryAction>
-             < CustomizedDialogDemo />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem button>
-        <Avatar>
-        <LocalDrinkIcon />
-        </Avatar>
-        <ListItemText primary="Cold Brew" secondary="HOT 2700 , ICE 3000" />
-        <ListItemSecondaryAction>
-            < CustomizedDialogDemo />
-        </ListItemSecondaryAction>
-      </ListItem>
-    </List>
+        <List component="nav">
+            {menus.map(menu=>{
+                return(
+                    <ListItem button>
+                    <Avatar>
+                    <LocalDrinkIcon />
+                    </Avatar>
+                    <ListItemText primary={menu.name} secondary={parseInt(menu.price)+"원"} />
+                    <ListItemSecondaryAction>
+                        < CustomizedDialogDemo menu={menu} />   
+                    </ListItemSecondaryAction>
+                </ListItem>
+                )
+            })}
+        </List>
     </div>
 
   );
