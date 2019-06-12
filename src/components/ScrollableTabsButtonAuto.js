@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import FolderList from './FolderList'
+import ButtonWithFolderList from './ButtonWithFolderList'
 
 function TabContainer(props) {
   return (
@@ -23,7 +23,6 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    width: 500,
     // width: '100%',
 
     backgroundColor: theme.palette.background.paper,
@@ -66,11 +65,11 @@ class ScrollableTabsButtonAuto extends React.Component {
 
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><FolderList onCreate={onCreate} category="Coffee" menus={menus.filter(menu=>menu.category === 'Coffee')}/></TabContainer>}
-        {value === 1 && <TabContainer><FolderList onCreate={onCreate} category="Latte" menus={menus.filter(menu=>menu.category === 'Latte')}/></TabContainer>}
-        {value === 2 && <TabContainer><FolderList onCreate={onCreate} category="Ice Blendid" menus={menus.filter(menu=>menu.category === 'Ice Blended')}/></TabContainer>}
-        {value === 3 && <TabContainer><FolderList onCreate={onCreate} category="Ade" menus={menus.filter(menu=>menu.category === 'Ade')}/></TabContainer>}
-        {value === 4 && <TabContainer><FolderList onCreate={onCreate} category="Bubble Tea" menus={menus.filter(menu=>menu.category === 'Bubble Tea')} /></TabContainer>}
+        {value === 0 && <TabContainer><ButtonWithFolderList onCreate={onCreate} category="Coffee" menus={menus.filter(menu=>menu.category === 'Coffee')}/></TabContainer>}
+        {value === 1 && <TabContainer><ButtonWithFolderList onCreate={onCreate} category="Latte" menus={menus.filter(menu=>menu.category === 'Latte')}/></TabContainer>}
+        {value === 2 && <TabContainer><ButtonWithFolderList onCreate={onCreate} category="Ice Blendid" menus={menus.filter(menu=>menu.category === 'Ice Blended')}/></TabContainer>}
+        {value === 3 && <TabContainer><ButtonWithFolderList onCreate={onCreate} category="Ade" menus={menus.filter(menu=>menu.category === 'Ade')}/></TabContainer>}
+        {value === 4 && <TabContainer><ButtonWithFolderList onCreate={onCreate} category="Bubble Tea" menus={menus.filter(menu=>menu.category === 'Bubble Tea')} /></TabContainer>}
 
 
       </div>

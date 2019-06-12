@@ -59,7 +59,7 @@ const DialogActions = withStyles(theme => ({
 class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
-    count: 1
+    count: 1,
   };
 
   handleClickOpen = () => {
@@ -85,7 +85,7 @@ class CustomizedDialogDemo extends React.Component {
   };
 
   render() {
-    const {menu} = this.props;
+    const {menu,onCreate} = this.props;
     return (
       <div>
         <IconButton arial-label="Add" onClick={this.handleClickOpen}>
@@ -140,7 +140,7 @@ class CustomizedDialogDemo extends React.Component {
             {/* <Button variant="contained" color="primary" onClick={this.handleClose} >
               장바구니  
             </Button> */}
-            <SimpleSnackbar/>
+            <SimpleSnackbar count={this.state.count} menu={menu} onCreate={onCreate}/>
           </DialogActions>
         </Dialog>
       </div>

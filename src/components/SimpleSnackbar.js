@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+// import {postMenu} from '../lib/api';
 
 const styles = theme => ({
   close: {
@@ -27,8 +28,11 @@ class SimpleSnackbar extends React.Component {
 //     }
 
   handleClick = () => {
+    const {onCreate,menu,count} = this.props;
     this.setState({ open: true });
-    // m
+    onCreate(menu,count)
+    // app.js 로 데이터 보내기 
+    // postMenu()
   };
 
   handleClose = (event, reason) => {

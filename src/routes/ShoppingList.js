@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FolderList from '../components/FolderList';
 
 class ShoppingList extends Component {
     shoppingList2pickup = () =>{
@@ -10,8 +11,8 @@ class ShoppingList extends Component {
         console.log('장바구니에 전달된 주문',order);
         return (
             <div>
-                <div>장바구니</div>
-                <button onClick={this.shoppingList2pickup}>결제</button>
+                {/* <FolderList onCreate={onCreate} category="Coffee" menus={menus.filter(menu=>menu.category === 'Coffee')}/> */}
+                <FolderList />
             </div>
         );
     }

@@ -19,19 +19,19 @@ class Menu extends Component {
         ],
         menus: []
     }
-    // menu2shoppingList = () => {
-    //     // props 전달받기 
-    //     const {onCreate} = this.props;
-    //     // 상태관리를 위한 부모 컴포넌트의 전송
-    //     const { order } = this.state;
-    //     onCreate(this.state.order);
+    menu2shoppingList = () => {
+        // props 전달받기 
+        const {onCreate} = this.props;
+        // 상태관리를 위한 부모 컴포넌트의 전송
+        const { order } = this.state;
+        onCreate(this.state.order);
 
-    //     //서버에 데이터 전송 
-    //     postMenu(order)
+        //서버에 데이터 전송 
+        postMenu(order)
         
 
 
-    // }
+    }
 
     // 서버에서 메뉴 목록 가져오기 
     componentDidMount() {
@@ -39,6 +39,7 @@ class Menu extends Component {
             .then(res => {
                 const menus = res.data;
                 this.setState({ menus });
+                console.log(menus)
                 
             })
             .catch(function(error){
