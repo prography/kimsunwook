@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { 
+  BrowserRouter as Router, 
+  Redirect,
+  Route,
+} from 'react-router-dom';
 
 import Menu from './routes/Menu'
 import Home from './routes/Home'
@@ -8,19 +12,19 @@ import ShoppingList from './routes/ShoppingList'
 import Pickup from './routes/Pickup'
 import './App.css';
 import LabelBottomNavigation from './components/LabelBottomNavigation'
-import { postMenu } from '../src/lib/api'
+import { postMenu, postToken } from '../src/lib/api'
 
 class App extends Component {
   state = {
     auth: undefined,
-    order: [],
+    orders: [],
     unique_id: '선욱'
   };
 
   handleCreate = (menu, count) => {
-    const { order } = this.state;
+    const { orders } = this.state;
     this.setState({
-      order: order.concat({
+      orders: orders.concat({
         count,
         name: menu.name,
         price: menu.price,
@@ -28,27 +32,33 @@ class App extends Component {
       price: menu.price * count,
       unique_id: '상은',
     });
-    postMenu(this.state);
+    // postMenu(this.state);
   };
   
-  handleSuccessLogin = (data) => {
-    console.log(123, data);
+  handleSuccessLogin = (auth) => {
+    console.log(123, auth);
     this.setState(() => ({
-      auth: data,
+      auth,
     }));
+    // postToken(auth)
   };
 
   render() {
-    console.log('앱이 랜더됬을때의 상태', this.state)
+    console.log('App render(), state: %o', this.state);
+    const { auth } = this.state;
+
     return (
       <div className="App">
         <Router>
+          
           <Route 
             exact 
             path="/" 
-            render={() => (
-              <KakaoLogin handleSuccessLogin={this.handleSuccessLogin}/>
-            )}
+            render={() => {
+              return auth === undefined 
+                ? <KakaoLogin handleSuccessLogin={this.handleSuccessLogin}/>
+                : <Redirect to="/menu" />
+            }}
           />
           <div>
             <Route 
@@ -61,7 +71,6 @@ class App extends Component {
             />
             <Route path="/pickup" component={Pickup} />
           </div>
-          <LabelBottomNavigation />
         </Router>
       </div>
     );

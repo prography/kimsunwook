@@ -5,6 +5,7 @@ import data from '../data/menu.json';
 import {postMenu} from '../lib/api';
 
 import ScrollableTabsButtonAuto from '../components/ScrollableTabsButtonAuto'
+import LabelBottomNavigation from '../components/LabelBottomNavigation'
 
 class Menu extends Component {
     state = {
@@ -33,6 +34,7 @@ class Menu extends Component {
 
     }
 
+    // http://ec2-13-209-76-67.ap-northeast-2.compute.amazonaws.com:8000/menu
     // 서버에서 메뉴 목록 가져오기 
     componentDidMount() {
         axios.get(`http://127.0.0.1:8000/menu/`)
@@ -55,6 +57,8 @@ class Menu extends Component {
         return (
             <div>
                 <ScrollableTabsButtonAuto onCreate={onCreate} menus={this.state.menus}  />
+                <LabelBottomNavigation />
+
                 {/* <ul>
                     {this.state.menus.map(menu => <li key={menu.name}>{menu.name}</li>)}
                 </ul>
