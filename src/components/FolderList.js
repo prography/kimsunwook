@@ -30,47 +30,91 @@ const styles = theme => ({
     },
 });
 
-function FolderList(props) {
-    const { classes, orders } = props;
-    const totalPrice = orders.reduce((accum, curOrder) => {
-        accum += curOrder.count * curOrder.price
-        return accum
-    }, 0)
-    return (
-        <div>
-            <List className={classes.root}>
-                {orders.map(order => {
-                    return (
-                        <div>
-                            <ListItem>
-                                <Avatar alt="구입한 커피" src={Logo} />
-                                <ListItemText primary={`${order.name}`} secondary={`${order.price}`} />
-                                <IconButton arial-label="Minus" >
-                                    <RemoveCircleIcon />
-                                </IconButton>
-                                <Typography gutterBottom>
-                                    {`${order.count}`}
-                                </Typography>
-                                <IconButton arial-label="Add" >
-                                    <AddCircleIcon />
-                                </IconButton>
-                            </ListItem>
-                            <Divider />
-                        </div>
-                    )
-                })}
-            </List>
-            <ListItem>
-                <AttachMoneyIcon />
-                {/* orders안의 order들의 총합  */}
-                <ListItemText primary={`총액 ${totalPrice}원`} />
-                <Button variant="contained" color="primary">
-                    카페로 결제하기
-                </Button>
-            </ListItem>
-        </div>
-    );
+// const handleMinusClick = () => {
+//     this.setState({
+//       count: --this.state.count,
+//     });
+//   };
+
+// const handleAddClick = () => {
+//     this.setState({
+//       count: ++this.state.count,
+//     });
+//   };
+
+class FolderList extends React.Component {
+    state = {
+      count: 1,
+      hotice: undefined,
+    };
+  
+    // handleMinusClick = () => {
+    //   this.setState({
+    //     count: --this.state.count,
+    //   });
+    // };
+  
+    // handleAddClick = () => {
+    //   this.setState({
+    //     count: ++this.state.count,
+    //   });
+    // };
+
+    render() {
+        const { classes, orders } = this.props;
+        const totalPrice = orders.reduce((accum, curOrder) => {
+            accum += curOrder.count * curOrder.price
+            return accum
+        }, 0);
+        return (
+            <div>
+                <List className={classes.root}>
+                    {orders.map(order => {
+                        return (
+                            <div>
+                                <ListItem>
+                                    <Avatar alt="구입한 커피" src={Logo} />
+                                    <ListItemText primary={`${order.hotice} ${order.name}`} secondary={`${order.price}`} />
+                                    <IconButton arial-label="Minus" >
+                                        <RemoveCircleIcon />
+                                    </IconButton>
+                                    <Typography gutterBottom>
+                                        {`${order.count}`}
+                                    </Typography>
+                                    <IconButton arial-label="Add" >
+                                        <AddCircleIcon />
+                                    </IconButton>
+                                </ListItem>
+                                <Divider />
+                            </div>
+                        )
+                    })}
+                </List>
+                <ListItem>
+                    <AttachMoneyIcon />
+                    {/* orders안의 order들의 총합  */}
+                    <ListItemText primary={`총액 ${totalPrice}원`} />
+                    <Button variant="contained" color="primary">
+                        카페로 결제하기
+                    </Button>
+                </ListItem>
+            </div>
+        );
+    }
 }
+  
+  
+
+// function FolderList(props) {
+//     const { classes, orders } = props;
+//     const totalPrice = orders.reduce((accum, curOrder) => {
+//         accum += curOrder.count * curOrder.price
+//         return accum
+//     }, 0)
+//     return (
+        
+//     );
+// }
 
 FolderList.propTypes = {
     classes: PropTypes.object.isRequired,

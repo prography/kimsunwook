@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import ButtonWithFolderList from './ButtonWithFolderList'
 
-function TabContainer(props) {
+function TabContainer(props) { 
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
       {props.children}

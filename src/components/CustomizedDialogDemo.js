@@ -60,6 +60,7 @@ class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
     count: 1,
+    hotice: 'ice',
   };
 
   handleClickOpen = () => {
@@ -84,6 +85,8 @@ class CustomizedDialogDemo extends React.Component {
     });
   };
 
+
+
   render() {
     const {menu,onCreate} = this.props;
     return (
@@ -106,17 +109,21 @@ class CustomizedDialogDemo extends React.Component {
               <Grid item xs={3}>
               </Grid>
               <Grid item xs={3}>
-              <Button  color="secondary">HOT</Button>
+              <Button  onClick={()=>{this.setState({
+                hotice:'hot'
+              })}} color="secondary">HOT</Button>
               </Grid>
               <Grid item xs={3}>
-              <Button  color="primary">ICE</Button>
+              <Button  temp='ice' onClick={()=>{this.setState({
+                hotice:'ice'
+              })}} color="primary">ICE</Button>
               </Grid>
               <Grid item xs={3}>
               </Grid>
             </Grid>
             </Typography>
             <Typography gutterBottom>
-            주문목록 {menu.name}:{this.state.count}개
+            주문목록 {this.state.hotice}{menu.name}:{this.state.count}개
             </Typography>
             <Typography gutterBottom>
             총액 W{menu.price*this.state.count}
@@ -140,7 +147,7 @@ class CustomizedDialogDemo extends React.Component {
             {/* <Button variant="contained" color="primary" onClick={this.handleClose} >
               장바구니  
             </Button> */}
-            <SimpleSnackbar count={this.state.count} menu={menu} onCreate={onCreate}/>
+            <SimpleSnackbar hotice={this.state.hotice} count={this.state.count} menu={menu} onCreate={onCreate}/>
           </DialogActions>
         </Dialog>
       </div>

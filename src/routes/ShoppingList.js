@@ -3,9 +3,7 @@ import FolderList from '../components/FolderList';
 import LabelBottomNavigation from '../components/LabelBottomNavigation'
 
 class ShoppingList extends Component {
-    shoppingList2pickup = () =>{
-        
-    }
+
 
     render() {
         const {orders} = this.props;

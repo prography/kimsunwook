@@ -28,9 +28,9 @@ class SimpleSnackbar extends React.Component {
 //     }
 
   handleClick = () => {
-    const {onCreate,menu,count} = this.props;
+    const {onCreate,menu,count,hotice} = this.props;
     this.setState({ open: true });
-    onCreate(menu,count)
+    onCreate(menu,count,hotice)
     // app.js 로 데이터 보내기 
     // postMenu()
   };

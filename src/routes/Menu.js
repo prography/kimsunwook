@@ -9,30 +9,21 @@ import LabelBottomNavigation from '../components/LabelBottomNavigation'
 
 class Menu extends Component {
     state = {
-        order: [
-            {
-            unique_id: '11',
-            created_at: '2019-04-04T03:56:11.416216Z',
-            price: '3000.00',
-            pickuptime: '1',
-            ordernumber: '3'
-            }
-        ],
-        menus: []
+        menus: [],
     }
-    menu2shoppingList = () => {
-        // props 전달받기 
-        const {onCreate} = this.props;
-        // 상태관리를 위한 부모 컴포넌트의 전송
-        const { order } = this.state;
-        onCreate(this.state.order);
+    // menu2shoppingList = () => {
+    //     // props 전달받기 
+    //     const {onCreate} = this.props;
+    //     // 상태관리를 위한 부모 컴포넌트의 전송
+    //     const { order } = this.state;
+    //     onCreate(this.state.order);
 
-        //서버에 데이터 전송 
-        postMenu(order)
+    //     //서버에 데이터 전송 
+    //     postMenu(order)
         
 
 
-    }
+    // }
 
     // http://ec2-13-209-76-67.ap-northeast-2.compute.amazonaws.com:8000/menu
     // 서버에서 메뉴 목록 가져오기 
@@ -47,9 +38,6 @@ class Menu extends Component {
             .catch(function(error){
                 console.log(error);
             })
-        // const menus = data;
-        // this.setState({menus});
-
     }
 
     render() {
@@ -58,11 +46,6 @@ class Menu extends Component {
             <div>
                 <ScrollableTabsButtonAuto onCreate={onCreate} menus={this.state.menus}  />
                 <LabelBottomNavigation />
-
-                {/* <ul>
-                    {this.state.menus.map(menu => <li key={menu.name}>{menu.name}</li>)}
-                </ul>
-                <button type="submit" onClick={this.menu2shoppingList}>담기</button> */}
             </div>
         );
     }

@@ -21,16 +21,18 @@ class App extends Component {
     unique_id: '선욱'
   };
 
-  handleCreate = (menu, count) => {
+  handleCreate = (menu, count,hotice) => {
+    console.log(menu,count,hotice);
     const { orders } = this.state;
     this.setState({
       orders: orders.concat({
         count,
         name: menu.name,
         price: menu.price,
+        smallTotal: menu.price * count,
+        hotice,
       }),
-      price: menu.price * count,
-      unique_id: '상은',
+      total: menu.price * count,
     });
     // postMenu(this.state);
   };
@@ -42,6 +44,8 @@ class App extends Component {
     }));
     // postToken(auth)
   };
+
+
 
   render() {
     console.log('App render(), state: %o', this.state);
