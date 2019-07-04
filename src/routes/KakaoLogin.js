@@ -4,6 +4,7 @@ import home from '../assets/home.png'
 import Logo from '../assets/Logo.png'
 import Main from '../assets/Main.png'
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios'
 
 
 class KakaoLogin extends Component {
@@ -18,31 +19,40 @@ class KakaoLogin extends Component {
         // alert(JSON.stringify(err));
       },
       success: function (authObj) {
+        axios.post('http://localhost:8000/rest-auth/kakao/', {
+          access_token: authObj.access_token,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
         handleSuccessLogin(authObj);
-        // ...
-        // alert(JSON.stringify(authObj));
+        console.log(authObj)
       },
     });
 
-    //   Kakao.Auth.createLoginButton({
-    //     container: '#kakao-login-btn',
-    //     success: function(authObj) {
-    //       // 로그인 성공시, API를 호출합니다.
-    //       Kakao.API.request({
-    //         url: '/v1/user/me',
-    //         success: function(res) {
-    //           alert(JSON.stringify(res));
-    //         },
-    //         fail: function(error) {
-    //           alert(JSON.stringify(error));
-    //         }
-    //       });
-    //     },
-    //     fail: function(err) {
-    //       alert(JSON.stringify(err));
-    //     }
-    //   });
-    // }
+      // Kakao.Auth.createLoginButton({
+      //   container: '#kakao-login-btn',
+      //   success: function(authObj) {
+      //     // 로그인 성공시, API를 호출합니다.
+      //     Kakao.API.request({
+      //       url: '/v1/user/me',
+      //       success: function(res) {
+      //         alert(JSON.stringify(res));
+      //       },
+      //       fail: function(error) {
+      //         alert(JSON.stringify(error));
+      //       }
+      //     });
+      //   },
+      //   fail: function(err) {
+      //     alert(JSON.stringify(err));
+      //   }
+      // });
+    
   }
   render() {
 
