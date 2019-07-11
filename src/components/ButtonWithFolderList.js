@@ -27,7 +27,7 @@ function ButtonWithFolderList(props) {
       <List component="nav">
         {menus.map((menu,idx) => {
           return (
-            <ListItem button>
+            <ListItem key={menu.name} button>
               <Avatar alt="coffee Image" src={idx%2 === 1 ? Latte : Americano} />
               <ListItemText primary={menu.name} secondary={parseInt(menu.price) + "원"} />
               <ListItemSecondaryAction>

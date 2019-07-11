@@ -25,9 +25,10 @@ import Waiting from '../assets/Waiting.png'
 //   },
 // });
 
-export default function SimpleCard() {
-    //   const classes = useStyles();
-    //   const bull = <span className={classes.bullet}>•</span>;
+
+
+
+export default function SimpleCard({orders}) {
     const cardStyle = {
         textAlign:'center'
 
@@ -57,8 +58,7 @@ export default function SimpleCard() {
                     주문 목록
                 </Typography>
                 <Typography color="textSecondary">
-                    카페라떼와 
-                    아이스 아메리카노
+                    {`${orders.map(order=>order.name)}`}
                 </Typography>
                 <Typography variant="body2" component="p">
                     {'예상 소요시간 5분'}

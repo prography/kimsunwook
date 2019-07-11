@@ -4,6 +4,7 @@ import SimpleCard from '../components/SimpleCard'
 
 class Pickup extends Component {
     render() {
+    const {orders, total} = this.props
         const pickup = {
             paddingTop: 16,
             height: 560,
@@ -13,7 +14,7 @@ class Pickup extends Component {
         return (
             <div>
                 <div style={pickup}>
-                    <SimpleCard />
+                    <SimpleCard orders={orders}/>
                 </div>
                 <LabelBottomNavigation />
             </div>

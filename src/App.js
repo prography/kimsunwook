@@ -1,79 +1,98 @@
-import React, { Component } from 'react';
-import { 
-  BrowserRouter as Router, 
-  Redirect,
-  Route,
-} from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
-import Menu from './routes/Menu'
-import Home from './routes/Home'
-import KakaoLogin from './routes/KakaoLogin'
-import ShoppingList from './routes/ShoppingList'
-import Pickup from './routes/Pickup'
-import './App.css';
-import LabelBottomNavigation from './components/LabelBottomNavigation'
-import { postMenu, postToken } from '../src/lib/api'
+import Menu from "./routes/Menu";
+import Home from "./routes/Home";
+import KakaoLogin from "./routes/KakaoLogin";
+import LabelBottomNavigation from "./components/LabelBottomNavigation";
+import Pickup from "./routes/Pickup";
+import { postMenu, postToken } from "../src/lib/api";
+import ShoppingList from "./routes/ShoppingList";
+
+import "./App.css";
 
 class App extends Component {
   state = {
-    auth: undefined,
-    orders: [],
-    unique_id: '선욱'
+    user: undefined,
+    orders: []
   };
 
-  handleCreate = (menu, count,hotice) => {
-    console.log(menu,count,hotice);
+  handleChangeOrders = orders => {
+    this.setState({
+      orders
+    });
+  };
+
+  handleSubmit = () => {
+    const result = this.state.orders
+      // TODO: order.name이 아닌 제품 ID를 보내줘야함
+      .map(order => `${order.name},${order.count}`)
+      .join(";");
+    console.log(result);
+  };
+
+  handleCreate = (menu, count, hotice) => {
+    console.log(menu, count, hotice);
     const { orders } = this.state;
     this.setState({
       orders: orders.concat({
+        id: orders.length,
         count,
         name: menu.name,
         price: menu.price,
-        smallTotal: menu.price * count,
-        hotice,
+        semiTotal: menu.price * count,
+        hotice
       }),
-      total: menu.price * count,
+      total: menu.price * count
     });
     // postMenu(this.state);
   };
-  
-  handleSuccessLogin = (auth) => {
-    console.log(123, auth);
+
+  handleSuccessLogin = res => {
+    console.log(123, res);
     this.setState(() => ({
-      auth,
+      user: res
     }));
     // postToken(auth)
   };
 
-
-
   render() {
-    console.log('App render(), state: %o', this.state);
-    const { auth } = this.state;
+    console.log("App render(), state: %o", this.state);
+    const { user } = this.state;
 
     return (
       <div className="App">
         <Router>
-          
-          <Route 
-            exact 
-            path="/" 
-            render={() => {
-              return auth === undefined 
-                ? <KakaoLogin handleSuccessLogin={this.handleSuccessLogin}/>
-                : <Redirect to="/menu" />
+          <Route
+            exact
+            path="/"
+            render={routeProps => {
+              return user === undefined ? (
+                <KakaoLogin
+                  handleSuccessLogin={this.handleSuccessLogin}
+                  {...routeProps}
+                />
+              ) : (
+                <Redirect to="/menu" />
+              );
             }}
           />
           <div>
-            <Route 
+            <Route
               path="/menu"
-              render={(props) => (<Menu onCreate={this.handleCreate} {...props} />)} 
+              render={props => <Menu onCreate={this.handleCreate} {...props} />}
             />
-            <Route 
-              path="/cart" 
-              render={() => <ShoppingList {...this.state} />} 
+            <Route
+              path="/cart"
+              render={() => (
+                <ShoppingList
+                  {...this.state}
+                  handleChangeOrders={this.handleChangeOrders}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
             />
-            <Route path="/pickup" component={Pickup} />
+            <Route path="/pickup" render={() => <Pickup {...this.state} />} />
           </div>
         </Router>
       </div>
