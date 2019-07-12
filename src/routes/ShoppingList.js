@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FolderList from "../components/FolderList";
 import LabelBottomNavigation from "../components/LabelBottomNavigation";
+import {Redirect} from 'react-router-dom';
+
 
 class ShoppingList extends Component {
   handleUpdateOrders = (id, count) => {
@@ -15,13 +17,13 @@ class ShoppingList extends Component {
   };
 
   render() {
-    const { orders, handleSubmit } = this.props;
+    const { user,orders, handleSubmit } = this.props;
     const shoppinglist = {
       // display:'flex',
     };
     console.log("장바구니에 전달된 주문", orders);
 
-    return (
+    return user ? (
       <div style={shoppinglist}>
         {/* <FolderList onCreate={onCreate} category="Coffee" menus={menus.filter(menu=>menu.category === 'Coffee')}/> */}
         <FolderList
@@ -31,7 +33,9 @@ class ShoppingList extends Component {
         />
         <LabelBottomNavigation />
       </div>
-    );
+    ) : (
+      <Redirect to="/"/>
+    )
   }
 }
 

@@ -6,21 +6,13 @@ import { postMenu } from '../lib/api';
 
 import ScrollableTabsButtonAuto from '../components/ScrollableTabsButtonAuto'
 import LabelBottomNavigation from '../components/LabelBottomNavigation'
+import {Redirect} from 'react-router-dom'
 
 class Menu extends Component {
   state = {
     menus: [],
   };
-  // menu2shoppingList = () => {
-  //     // props 전달받기 
-  //     const {onCreate} = this.props;
-  //     // 상태관리를 위한 부모 컴포넌트의 전송
-  //     const { order } = this.state;
-  //     onCreate(this.state.order);
 
-  //     //서버에 데이터 전송 
-  //     postMenu(order)
-  // }
 
   // http://ec2-13-209-76-67.ap-northeast-2.compute.amazonaws.com:8000/menu
   // 서버에서 메뉴 목록 가져오기 
@@ -37,8 +29,9 @@ class Menu extends Component {
   }
 
   render() {
-    const { onCreate } = this.props;
-    return (
+    const { user, onCreate } = this.props;
+    
+    return user ? (
       <div>
         <ScrollableTabsButtonAuto
           menus={this.state.menus} 
@@ -46,7 +39,9 @@ class Menu extends Component {
         />
         <LabelBottomNavigation />
       </div>
-    );
+    ) : (
+      <Redirect to="/" />
+    )
   }
 }
 

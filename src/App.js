@@ -81,7 +81,7 @@ class App extends Component {
           />
             <Route
               path="/menu"
-              render={props => <Menu onCreate={this.handleCreate} {...props} />}
+              render={props => <Menu  {...this.state} onCreate={this.handleCreate} {...props} />}
             />
             <Route
               path="/cart"
