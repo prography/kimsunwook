@@ -8,15 +8,17 @@ import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FaceIcon from '@material-ui/icons/Face';
-import { pink } from '@material-ui/core/colors';
+// import red  from '@material-ui/core/colors/red';
 
 import { Link } from 'react-router-dom';
 
 
 const styles = {
   root: {
-    // background: 'pink',
-    width: 500,
+    // background: red[400],
+    
+    
+    // width: 500,
   },
 };
 
@@ -35,10 +37,10 @@ class LabelBottomNavigation extends React.Component {
 
     return (
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-        <BottomNavigationAction component={Link} to="/menu"label="menu" value="menu" icon={<LocalDrinkIcon/>} />
-        <BottomNavigationAction component={Link} to="/shoppingList"label="ShoppingList" value="shoppinglist" icon={<ShoppingCartIcon />} />
-        <BottomNavigationAction component={Link} to="/pickup"label="Pickup" value="pickup" icon={<LocationOnIcon />} />
-        <BottomNavigationAction component={Link} to="/mypage"label="Mypage" value="mypage" icon={<FaceIcon />} />
+        <BottomNavigationAction component={Link} to="/menu"label="Menu" value="Menu" icon={<LocalDrinkIcon/>} />
+        <BottomNavigationAction component={Link} to="/cart"label="Cart" value="Cart" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction component={Link} to="/pickup"label="Pickup" value="Pickup" icon={<LocationOnIcon />} />
+        <BottomNavigationAction component={Link} to="/mypage"label="Mypage" value="Mypage" icon={<FaceIcon />} />
       </BottomNavigation>
     );
   }
