@@ -1,39 +1,42 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import AddCircleIcon from '@material-ui/icons/AddCircle'
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
-
-import Grid from '@material-ui/core/Grid';
-import SimpleSnackbar from './SimpleSnackbar';
+import Grid from "@material-ui/core/Grid";
+import SimpleSnackbar from "./SimpleSnackbar";
 
 const DialogTitle = withStyles(theme => ({
   root: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     margin: 0,
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing.unit,
     top: theme.spacing.unit,
-    color: theme.palette.grey[500],
-  },
+    color: theme.palette.grey[500]
+  }
 }))(props => {
   const { children, classes, onClose } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="Close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="Close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -44,52 +47,69 @@ const DialogTitle = withStyles(theme => ({
 const DialogContent = withStyles(theme => ({
   root: {
     margin: 0,
-    padding: theme.spacing.unit * 2,
-  },
+    padding: theme.spacing.unit * 2
+  }
 }))(MuiDialogContent);
 
 const DialogActions = withStyles(theme => ({
   root: {
     borderTop: `1px solid ${theme.palette.divider}`,
     margin: 0,
-    padding: theme.spacing.unit,
-  },
+    padding: theme.spacing.unit
+  }
 }))(MuiDialogActions);
 
 class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
     count: 1,
+    hotice: "ice"
   };
 
   handleClickOpen = () => {
     this.setState({
-      open: true,
+      open: true
     });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      count: 1
+    });
   };
 
   handleMinusClick = () => {
-    this.setState({
-      count: --this.state.count,
-    });
+    // console.log(this.state,'456');
+    if(this.state.count !== 1){
+      this.setState({
+        count: --this.state.count
+      });
+    }
+
   };
 
   handleAddClick = () => {
+    // console.log(this.state,'123');
     this.setState({
-      count: ++this.state.count,
+      count: ++this.state.count
     });
   };
 
+  handleShoppingListClick = () => {
+    const {onCreate,menu} = this.props
+    // this.setState({ snackBarOpen: true });
+    onCreate(menu, this.state.count, this.state.hotice);
+    this.handleClose();
+  };
+
   render() {
-    const {menu,onCreate} = this.props;
+    const { menu, onCreate } = this.props;
+    const { snackBarOpen } = this.state;
     return (
       <div>
         <IconButton arial-label="Add" onClick={this.handleClickOpen}>
-          <AddCircleIcon/>
+          <AddCircleIcon />
         </IconButton>
         <Dialog
           onClose={this.handleClose}
@@ -101,46 +121,75 @@ class CustomizedDialogDemo extends React.Component {
           </DialogTitle>
           <DialogContent>
             <Typography gutterBottom>
-            <Grid container spacing={24}>
-            
-              <Grid item xs={3}>
+              <Grid container spacing={24}>
+                <Grid item xs={3} />
+                <Grid item xs={3}>
+                  <Button
+                    onClick={() => {
+                      this.setState({
+                        hotice: "hot"
+                      });
+                    }}
+                    color="secondary"
+                  >
+                    HOT
+                  </Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    temp="ice"
+                    onClick={() => {
+                      this.setState({
+                        hotice: "ice"
+                      });
+                    }}
+                    color="primary"
+                  >
+                    ICE
+                  </Button>
+                </Grid>
+                <Grid item xs={3} />
               </Grid>
-              <Grid item xs={3}>
-              <Button  color="secondary">HOT</Button>
-              </Grid>
-              <Grid item xs={3}>
-              <Button  color="primary">ICE</Button>
-              </Grid>
-              <Grid item xs={3}>
-              </Grid>
-            </Grid>
             </Typography>
             <Typography gutterBottom>
-            주문목록 {menu.name}:{this.state.count}개
+              주문목록 {this.state.hotice}
+              {menu.name}:{this.state.count}개
             </Typography>
             <Typography gutterBottom>
-            총액 W{menu.price*this.state.count}
+              총액 W{menu.price * this.state.count}
             </Typography>
           </DialogContent>
           <DialogActions>
-          <IconButton arial-label="Minus" onClick={this.handleMinusClick}>
-            <RemoveCircleIcon/>
-          </IconButton>
-          <Typography gutterBottom>
-            {this.state.count}
-            </Typography>
-          <IconButton arial-label="Add" onClick={this.handleAddClick}>
-            <AddCircleIcon/>
-          </IconButton>
+            <IconButton arial-label="Minus" onClick={this.handleMinusClick}>
+              <RemoveCircleIcon />
+            </IconButton>
+            <Typography gutterBottom>{this.state.count}</Typography>
+            <IconButton arial-label="Add" onClick={this.handleAddClick}>
+              <AddCircleIcon />
+            </IconButton>
           </DialogActions>
           <DialogActions>
-            <Button variant="contained" color="primary" onClick={this.handleClose} >
-              바로결제 
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleClose}
+            >
+              바로결제
             </Button>
-            {/* <Button variant="contained" color="primary" onClick={this.handleClose} >
-              장바구니  
-            </Button> */}
-            <SimpleSnackbar count={this.state.count} menu={menu} onCreate={onCreate}/>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleShoppingListClick}
+            >
+              장바구니
+            </Button>
+            <SimpleSnackbar
+              isOpen={snackBarOpen}
+              hotice={this.state.hotice}
+              count={this.state.count}
+              menu={menu}
+              onCreate={onCreate}
+            />
           </DialogActions>
         </Dialog>
       </div>
