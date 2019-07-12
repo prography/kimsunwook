@@ -7,8 +7,10 @@ import KakaoLogin from "./routes/KakaoLogin";
 import LabelBottomNavigation from "./components/LabelBottomNavigation";
 import Pickup from "./routes/Pickup";
 import MyPage from "./routes/MyPage";
-import { postMenu, postToken } from "../src/lib/api";
+// import { postMenu, postToken } from "../src/lib/api";
 import ShoppingList from "./routes/ShoppingList";
+import axios from 'axios'
+
 
 import "./App.css";
 
@@ -29,7 +31,21 @@ class App extends Component {
       // TODO: order.name이 아닌 제품 ID를 보내줘야함
       .map(order => `${order.name},${order.count}`)
       .join(";");
-    console.log(result);
+
+      axios.post(`http://127.0.0.1:8000/order/`, {
+        order: result,
+        price: this.state.total,
+        user: 1
+      })
+      .then(function (response) {
+        console.log("서버에 들어간 주문",response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+    
   };
 
   handleCreate = (menu, count, hotice) => {

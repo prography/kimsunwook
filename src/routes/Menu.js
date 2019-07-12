@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import data from '../data/menu.json';
 
-import { postMenu } from '../lib/api';
+// import { postMenu } from '../lib/api';
 
 import ScrollableTabsButtonAuto from '../components/ScrollableTabsButtonAuto'
 import LabelBottomNavigation from '../components/LabelBottomNavigation'

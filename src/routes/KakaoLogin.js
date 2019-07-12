@@ -43,7 +43,7 @@ class KakaoLogin extends Component {
           success: function(res) {
             axios
               .post("http://localhost:8000/rest-auth/kakao/", {
-                access_token: res.access_token
+                access_token: authObj.access_token
               })
               .then(function(response) {
                 console.log(response);
