@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import KakaoLogin from "./routes/KakaoLogin";
 import LabelBottomNavigation from "./components/LabelBottomNavigation";
 import Pickup from "./routes/Pickup";
+import MyPage from "./routes/MyPage";
 import { postMenu, postToken } from "../src/lib/api";
 import ShoppingList from "./routes/ShoppingList";
 
@@ -63,6 +64,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
+          <div>
           <Route
             exact
             path="/"
@@ -77,7 +79,6 @@ class App extends Component {
               );
             }}
           />
-          <div>
             <Route
               path="/menu"
               render={props => <Menu onCreate={this.handleCreate} {...props} />}
@@ -93,6 +94,7 @@ class App extends Component {
               )}
             />
             <Route path="/pickup" render={() => <Pickup {...this.state} />} />
+            <Route path="/mypage/"render={() => <MyPage />} />
           </div>
         </Router>
       </div>
