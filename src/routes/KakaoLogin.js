@@ -13,29 +13,6 @@ class KakaoLogin extends Component {
     Kakao.init("12d54589fa96afd4845a4b8bcb8270b5");
     Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
-      fail: function(err) {
-        console.error(err);
-        // alert(JSON.stringify(err));
-      },
-      success: function(authObj) {
-        axios
-          .post("http://localhost:8000/rest-auth/kakao/", {
-            access_token: authObj.access_token
-          })
-          .then(function(response) {
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-
-        handleSuccessLogin(authObj);
-        console.log(authObj);
-      }
-    });
-
-    Kakao.Auth.createLoginButton({
-      container: "#kakao-login-btn",
       success: function(authObj) {
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
